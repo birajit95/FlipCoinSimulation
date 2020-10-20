@@ -30,12 +30,24 @@ flippingGame(){
     
     if [ $headCount -gt $tailCount ]
     then
-       echo "Its win! Head won by " $(( headCount-tailCount ))
+          echo "Its win! Head won by " $(( headCount-tailCount ))
+
     elif [ $headCount -lt $tailCount ]
     then
-       echo "Its win! Tail won by " $(( tailCount-headCount ))
+          echo "Its win! Tail won by " $(( tailCount-headCount ))
+
     else
-       echo "Its a Tie"     
+          echo "There is a Tie"
+          
+          while [ $(( headCount - tailCount )) -ne 2 ]
+          do
+               if [ $(flipCoin) == 'Head' ]
+               then
+                    ((headCount++))
+               else
+                    ((tailCount++))
+               fi
+         done
     fi
 
     
