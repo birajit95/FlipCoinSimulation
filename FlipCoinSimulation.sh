@@ -18,8 +18,7 @@ flippingGame(){
     local headCount=0
     local tailCount=0
 
-    count=1
-    while [ $count -le 100 ]
+    while [[ $headCount -lt 21 && $tailCount -lt 21 ]]
     do
       if [ $(flipCoin) == 'Head' ]
       then
@@ -27,16 +26,19 @@ flippingGame(){
       else
           ((tailCount++))
       fi   
-
-      ((count++))
-
     done
+    
+    if [ $headCount -gt $tailCount ]
+    then
+       echo "Its win! Head won by " $(( headCount-tailCount ))
+    elif [ $headCount -lt $tailCount ]
+    then
+       echo "Its win! Tail won by " $(( tailCount-headCount ))
+    else
+       echo "Its a Tie"     
+    fi
 
-    echo "Head has won $headCount times"
-
-    echo "Tail has won $tailCount times"
-
-   
+    
 }
 
 flippingGame
